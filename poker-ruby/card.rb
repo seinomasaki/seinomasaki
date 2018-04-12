@@ -40,7 +40,6 @@ class Card
     if exception_card?(rank)
       rank = card_organize(rank)
     end
-    p rank
     (rank.size - 1).times do |i|
       return false if (rank[i] - rank[i + 1]) != 1
       return true if i == (rank.size - 2)

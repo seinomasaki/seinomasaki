@@ -3,6 +3,7 @@ class Hand
 
   TWO_HAND_RANK = Hash["straight flush"=>4,"pair"=>3,"straight"=>2,"flush"=>1,"high card"=>0]
   THREE_HAND_RANK = Hash["straight flush"=>5,"three of a kind"=>4,"straight"=>3,"flush"=>2,"pair"=>1,"high card"=>0]
+  FIVE_HAND_RANK = Hash["royal flush"=>9,"straight flush"=>8,"four of a kind"=>7,"full house"=>6,"flush"=>5,"straight"=>4,"three of a kind"=>3,"two pair"=>2,"one pair"=>1,"high card"=>0]
 
   def initialize(hand)
     @has_suit = hand[0]
@@ -41,5 +42,13 @@ class Hand
       p "high card"
     end
   end
+  def judg_five_card
+    hand_score_five_card(judg_score_card)
+  end
+
+  def hand_score_five_card(hand)
+    FIVE_HAND_RANK[hand]
+  end
 
 end
+

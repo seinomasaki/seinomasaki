@@ -35,7 +35,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1<p2' do
-        expect(cardrank.open).to eq "prayer2"
+        expect(cardrank.open).to eq "winer prayer2"
       end
     end
 
@@ -137,7 +137,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1>p2' do
-        expect(cardrank.open).to eq "prayer1"
+        expect(cardrank.open).to eq "winer prayer1"
       end
     end
 
@@ -171,7 +171,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1>p2' do
-        expect(cardrank.open).to eq "prayer1"
+        expect(cardrank.open).to eq "winer prayer1"
       end
     end
 
@@ -204,7 +204,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1>p2' do
-        expect(cardrank.open).to eq "prayer1"
+        expect(cardrank.open).to eq "winer prayer1"
       end
     end
 
@@ -238,7 +238,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1<p2' do
-        expect(cardrank.open).to eq "prayer2"
+        expect(cardrank.open).to eq "winer prayer2"
       end
     end
 
@@ -272,7 +272,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1<p2' do
-        expect(cardrank.open).to eq "prayer2"
+        expect(cardrank.open).to eq "winer prayer2"
       end
     end
 
@@ -306,7 +306,7 @@ describe Cardopen do
       p hands
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1>p2' do
-        expect(cardrank.open).to eq "prayer1"
+        expect(cardrank.open).to eq "winer prayer1"
       end
     end
 
@@ -339,7 +339,7 @@ describe Cardopen do
 
       let(:cardrank) { Cardopen.new(hands) }
       it 'p1>p2' do
-        expect(cardrank.open).to eq "prayer1"
+        expect(cardrank.open).to eq "winer prayer1"
       end
     end
   end

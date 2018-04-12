@@ -31,26 +31,16 @@ class Disribution
     @deck52 = @deck52.shuffle
   end
 
-  def distribution
-    hand = @deck52[0..@bid-1]
-    @deck52.size
-    @deck52.slice!(0,@bid)
-    @deck52.size
-    p hand
-    return hand
+  def deal
+    begin
+      raise if @deck52.size < @bid
+      hand = @deck52.slice!(0,@bid)
+      return hand
+    rescue
+      puts "deckの数が足りません"
+      exit!
+    end
+
   end
 
 end
-
-deck = Disribution.new(6)
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution
-deck.distribution

@@ -26,9 +26,9 @@ class Cardopen
 
   def win(prayer1,prayer2)
     if prayer1 > prayer2
-      "prayer1"
+      "winer prayer1"
     elsif prayer1 < prayer2
-      "prayer2"
+      "winer prayer2"
     elsif prayer1 == prayer2
       "drow"
     end
