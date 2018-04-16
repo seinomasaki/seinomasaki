@@ -16,11 +16,11 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
 
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]
@@ -47,11 +47,11 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
 
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]
@@ -77,10 +77,10 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]
@@ -106,10 +106,10 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]
@@ -135,10 +135,10 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]
@@ -164,10 +164,10 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]
@@ -193,10 +193,10 @@ describe Cardopen do
 
       prayer1 = [card[0].has_same_suits?,
                  card[0].numbers_of_the_same_rank,
-                 card[0].has_same_connections?]
+                 card[0].has_serial_number?]
       prayer2 = [card[1].has_same_suits?,
                  card[1].numbers_of_the_same_rank,
-                 card[1].has_same_connections?]
+                 card[1].has_serial_number?]
 
       cards = [Hand.new(prayer1),
                Hand.new(prayer2)]

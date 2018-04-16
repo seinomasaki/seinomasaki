@@ -35,14 +35,14 @@ class Card
     @suit.uniq.size == 1
   end
 
-  def has_same_connections?
+  def has_serial_number?
     rank = card_organize(@rank)
     if exception_card?(rank)
       rank = card_organize(rank)
     end
     (rank.size - 1).times do |i|
       return false if (rank[i] - rank[i + 1]) != 1
-      return true if i == (rank.size - 2)
+      return rank if i == (rank.size - 2)
     end
   end
 

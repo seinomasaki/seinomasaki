@@ -3,8 +3,8 @@ class Disribution
 
   CARD = Hash["1"=>"A","13"=>"K","12"=>"Q","11"=>"J"]
 
-  def initialize(bid)
-    @bid = bid
+  def initialize(number_of_sheets)
+    @number_of_sheets = number_of_sheets
     @deck52 = Array.new
     decks
     shuffle
@@ -33,14 +33,13 @@ class Disribution
 
   def deal
     begin
-      raise if @deck52.size < @bid
-      hand = @deck52.slice!(0,@bid)
+      raise if @deck52.size < @number_of_sheets
+      hand = @deck52.slice!(0, @number_of_sheets)
       return hand
     rescue
       puts "deckの数が足りません"
       exit!
     end
-
   end
 
 end

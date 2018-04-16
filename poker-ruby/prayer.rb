@@ -1,21 +1,22 @@
+require './card'
+require './hand'
 require './cardopen'
-require './prayer'
+require './card_distribution'
 
-class Poker
-  attr_reader :number_of_sheets
+class Prayer
+  attr_reader :people
 
-  def initialize(bid)
-    @number_of_sheets = bid
-    @deck = Disribution.new(@number_of_sheets)
+  def initialize(number_of_sheets)
+    @number_of_sheets = number_of_sheets
+    @deck52 = Array.new
+    decks
+    shuffle
   end
 
-  def game
-    prayer1,hand = has_cards_hand
+  def prayer_hand
+    prayer,hand = has_cards_hand
     p "prayer1:#{hand}"
-    prayer2,hand = has_cards_hand
-    p "prayer2:#{hand}"
-    hands = prayer1 + prayer2
-    p Cardopen.new(hands).open
+    return prayer
   end
 
   def has_cards_hand
@@ -35,15 +36,5 @@ class Poker
     return [hand, cards.unit],prayer_card
   end
 
-end
-
-if __FILE__ == $0
-  p "手札を何枚にしますか？(1枚以上)"
-  poker = Poker.new(gets.to_i)
-  1.upto(30) do |i|
-    puts "        "
-    puts "game#{i}"
-    poker.game
-  end
 
 end
