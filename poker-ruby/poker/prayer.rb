@@ -16,7 +16,7 @@ class Prayer
                    card.numbers_of_the_same_rank,
                    card.has_serial_number?]
     hand_rank = Hand.new(card_score)
-    p [hand_rank.judg_score_card,card.unit]
+    [hand_rank.judg_score_card,card.unit]
   end
 
 end
