@@ -15,39 +15,39 @@ class Hand
     elsif !@has_suit && @number_of_the_same_rank.size == 2
       two_sets_of_same_rank
     elsif @has_suit && @number_of_the_same_rank.size == 0 && !@has_continuation
-      p "flush"
+      "flush"
     elsif !@has_suit && @number_of_the_same_rank.size == 0 && !@has_continuation
-      p "high card"
+      "high card"
     end
   end
 
   def one_set_of_same_rank
     if @number_of_the_same_rank[0] == 4
-      p "four of a kind"
+      "four of a kind"
     elsif @number_of_the_same_rank[0] == 3
-      p "three of a kind"
+      "three of a kind"
     elsif @number_of_the_same_rank[0] == 2
-      p "one pair"
+      "one pair"
     end
   end
 
   def two_sets_of_same_rank
     if @number_of_the_same_rank.inject{|sum, i| sum + i} == 4
-      p "two pair"
+      "two pair"
     elsif @number_of_the_same_rank.inject{|sum, i| sum + i} == 5
-      p "full house"
+      "full house"
     end
   end
 
   def serial_card
     if @has_suit
       if @has_continuation.inject{|sum, i| sum + i} == 60
-        p "royal flush"
+        "royal flush"
       else
-        p "straight flush"
+        "straight flush"
       end
     elsif !@has_suit
-      p "straight"
+      "straight"
     end
   end
 

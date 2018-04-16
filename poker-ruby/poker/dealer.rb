@@ -28,7 +28,6 @@ class Dealer
         exit!
       end
     end
-    p @prayers_hand
     p showdown
   end
 
