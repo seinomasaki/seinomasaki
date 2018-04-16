@@ -15,14 +15,11 @@ class Showdown
   def showdown
     if @prayer1_same_rank_number.size != 0 && @prayer1_same_rank_number.size == @prayer2_same_rank_number.size
       result = same_score_hand_with_same_rank
-      if result == "drow"
-        result = drow_case
-      end
     else
       result = win(@prayer1hand,@prayer2hand)
-      if result == "drow"
-        result = drow_case
-      end
+    end
+    if result == "drow"
+      result = drow_case
     end
     result
   end
