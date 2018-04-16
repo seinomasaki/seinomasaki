@@ -21,7 +21,10 @@ class Dealer
         raise if @deck52.size < @number_of_cards
         hand = @deck52.slice!(0, @number_of_cards)
         prayer_hand = Prayer.new(hand,number).cards
-        @prayers_hand << [score_check(prayer_hand[0]),prayer_hand[1]]
+        hand = prayer_hand[0]
+        cards = prayer_hand[1]
+        same_rank_number_list = prayer_hand[2]
+        @prayers_hand << [score_check(hand),cards,same_rank_number_list]
       rescue
         puts "deckが残り#{@deck52.size}枚で枚数が足りません"
         puts "gameを終了します"

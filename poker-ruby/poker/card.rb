@@ -18,13 +18,14 @@ class Card
   end
 
   def numbers_of_the_same_rank
-    same_rank_list = Array.new
+    same_rank_count_list = Array.new
+    same_rank_number_list = Array.new
     element = @rank.uniq
     element.each do |i|
-      count_number = @rank.count(i)
-      same_rank_list.push(count_number) if count_number > 1
+      same_rank_count_list.push(@rank.count(i)) if @rank.count(i) > 1
+      same_rank_number_list.push(design(i)) if @rank.count(i) > 1
     end
-    same_rank_list
+    [same_rank_count_list,same_rank_number_list]
   end
 
   def has_same_suits?

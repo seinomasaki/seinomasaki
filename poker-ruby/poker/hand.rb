@@ -3,7 +3,8 @@ class Hand
 
   def initialize(hand)
     @has_suit = hand[0]
-    @number_of_the_same_rank = hand[1]
+    same_rank_lists = hand[1]
+    @number_of_the_same_rank = same_rank_lists[0]
     @has_continuation = hand[2]
   end
 
