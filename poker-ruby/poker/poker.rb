@@ -11,6 +11,7 @@ class Poker
     1.upto(30) do |i|
       puts "-------","game#{i}"
       @dealer.distribute
+      sleep(3)
     end
   end
 
