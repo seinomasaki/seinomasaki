@@ -3,7 +3,7 @@ require './prayer'
 require './showdown'
 
 class Dealer
-  attr_reader :number_of_card
+  attr_reader :number_of_cards
 
   TWO_HAND_RANK = Hash["straight flush"=>4,"one pair"=>3,"straight"=>2,"flush"=>1,"high card"=>0]
   THREE_HAND_RANK = Hash["straight flush"=>5,"three of a kind"=>4,"straight"=>3,"flush"=>2,"one pair"=>1,"high card"=>0]
@@ -14,10 +14,10 @@ class Dealer
     @deck52 = Deck.new.instance_variable_get('@deck52')
   end
 
-  def distribute
+  def deal
     @prayers_hand = Array.new
-    1.upto(2) do |number|
-      begin
+    begin
+      1.upto(2) do |number|
         raise if @deck52.size < @number_of_cards
         hand = @deck52.slice!(0, @number_of_cards)
         prayer_hand = Prayer.new(hand,number).cards
@@ -25,11 +25,12 @@ class Dealer
         cards = prayer_hand[1]
         same_rank_number_list = prayer_hand[2]
         @prayers_hand << [score_check(hand),cards,same_rank_number_list]
-      rescue
-        puts "deckが残り#{@deck52.size}枚で枚数が足りません"
-        puts "gameを終了します"
-        exit!
       end
+    rescue
+      puts "deckが残り#{@deck52.size}枚で枚数が足りません"
+      puts "deckを作り直します"
+      @deck52 = Deck.new.instance_variable_get('@deck52')
+      retry
     end
     p showdown
   end

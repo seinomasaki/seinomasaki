@@ -10,8 +10,8 @@ class Poker
   def game
     1.upto(30) do |i|
       puts "-------","game#{i}"
-      @dealer.distribute
-      sleep(3)
+      @dealer.deal
+      sleep(2)
     end
   end
 
