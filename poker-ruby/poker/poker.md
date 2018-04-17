@@ -1,6 +1,7 @@
 
 # poker.rb
-`require './dealer'
+```
+require './dealer'
 
 class Poker
   attr_reader :number_of_card
@@ -23,10 +24,11 @@ if $PROGRAM_NAME == __FILE__
   p '手札を何枚にしますか？(1枚以上)'
   Poker.new(gets.to_i).game
 end
-`
+```
 
 # dealer.rb
-`require './deck'
+```
+require './deck'
 require './prayer'
 require './showdown'
 
@@ -89,12 +91,14 @@ class Dealer
     FIVE_HAND_RANK[hand]
   end
 
-end`
+end
+```
 
 
 
 # deck.rb
-`class Deck
+```
+class Deck
 
   CARD = Hash["1"=>"A","13"=>"K","12"=>"Q","11"=>"J"]
 
@@ -126,11 +130,12 @@ end`
   end
 
 end
-`
+```
 
 
 # showdown.rb
-`class Showdown
+```
+class Showdown
   attr_reader :hands
 
   def initialize(hands)
@@ -181,10 +186,12 @@ end
     end
   end
 
-end`
+end
+```
 
 # prayer.rb
-`require './card'
+```
+require './card'
 require './hand'
 
 class Prayer
@@ -208,11 +215,12 @@ class Prayer
   end
 
 end
-`
+```
 
 
 # card.rb
-`class Card
+```
+class Card
   attr_reader :hand
 
   HAND = Hash["A"=>"14","K"=>"13","Q"=>"12","J"=>"11", 14=>1]
@@ -286,11 +294,12 @@ end
   end
 
 end
-`
+```
 
 
 # hand.rb
-`class Hand
+```
+class Hand
   attr_reader :hand
 
   def initialize(hand)
@@ -344,4 +353,5 @@ end
     end
   end
 
-end`
+end
+```
