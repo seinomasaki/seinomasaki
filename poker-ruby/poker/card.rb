@@ -1,34 +1,29 @@
 class Card
-  attr_reader :hand
+  attr_reader :suit, :rank
 
-  HAND = Hash["A"=>"14","K"=>"13","Q"=>"12","J"=>"11", 14=>1]
+  HAND = {"A"=>"14", "K"=>"13", "Q"=>"12", "J"=>"11", 14=>1}
 
-  def initialize(hand)
-    if hand.size == 1
-      @suit = hand.flatten[0]
-      @rank = hand.flatten[1]
-    elsif hand.size > 1
-      @suit = hand.transpose[0]
-      @rank = hand.transpose[1]
-    end
+  def initialize(suit,rank)
+    @suit = suit
+    @rank = rank
   end
 
   def notation
     "#{@rank}#{@suit}"
   end
 
-  def numbers_of_the_same_rank
-    same_rank_count_list = Array.new
-    same_rank_number_list = Array.new
-    element = @rank.uniq
-    element.each do |i|
-      same_rank_count_list.push(@rank.count(i)) if @rank.count(i) > 1
-      same_rank_number_list.push(design(i)) if @rank.count(i) > 1
-    end
-    [same_rank_count_list,same_rank_number_list]
+  def has_same_rank
+    count_list = Array.new
+    number_list = Array.new
+    same_rank = @rank.group_by{ |i| i}.reject{ |k, v| v.one?}.keys
+    same_rank.each { |i|
+      count_list.push(@rank.count(i))
+      number_list.push(design(i))
+    }
+    return count_list,number_list
   end
 
-  def has_same_suits?
+  def has_same_suit?
     @suit.uniq.size == 1
   end
 
@@ -47,12 +42,12 @@ class Card
     card_organize(@rank)
   end
 
-  def card_organize(hand)
-    card = Array.new
-    hand.size.times do |i|
-      card.push(design(hand[i]))
-    end
-    card.sort.reverse
+  def card_organize(card)
+    rank = Array.new
+    card.each { |i|
+      rank.push(design(i))
+    }
+    rank.sort.reverse
   end
 
   def exception_card?(card)

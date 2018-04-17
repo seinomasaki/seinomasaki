@@ -1,14 +1,16 @@
 class Deck
-
   CARD = Hash["1"=>"A","13"=>"K","12"=>"Q","11"=>"J"]
 
   def initialize
     @deck52 = Array.new
-    decks
+  end
+
+  def deck
+    card
     shuffle
   end
 
-  def decks
+  def card
     ["♠","♣","◆","♥"].each do |suit|
       (1..13).each do |rank|
         @deck52 << [suit,picture(rank.to_s)]
