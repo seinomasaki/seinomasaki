@@ -12,8 +12,8 @@ class Poker
   def game
     1.upto(30) do |i|
       puts "-------","game#{i}"
-      @dealer.distribute
-      sleep(5)
+      @dealer.deal
+      sleep(2)
     end
   end
 
@@ -24,13 +24,14 @@ if $PROGRAM_NAME == __FILE__
   Poker.new(gets.to_i).game
 end
 
+
 # dealer.rb
 require './deck'
 require './prayer'
 require './showdown'
 
 class Dealer
-  attr_reader :number_of_card
+  attr_reader :number_of_cards
 
   TWO_HAND_RANK = Hash["straight flush"=>4,"one pair"=>3,"straight"=>2,"flush"=>1,"high card"=>0]
   THREE_HAND_RANK = Hash["straight flush"=>5,"three of a kind"=>4,"straight"=>3,"flush"=>2,"one pair"=>1,"high card"=>0]
@@ -41,10 +42,10 @@ class Dealer
     @deck52 = Deck.new.instance_variable_get('@deck52')
   end
 
-  def distribute
+  def deal
     @prayers_hand = Array.new
-    1.upto(2) do |number|
-      begin
+    begin
+      1.upto(2) do |number|
         raise if @deck52.size < @number_of_cards
         hand = @deck52.slice!(0, @number_of_cards)
         prayer_hand = Prayer.new(hand,number).cards
@@ -52,11 +53,12 @@ class Dealer
         cards = prayer_hand[1]
         same_rank_number_list = prayer_hand[2]
         @prayers_hand << [score_check(hand),cards,same_rank_number_list]
-      rescue
-        puts "deckが残り#{@deck52.size}枚で枚数が足りません"
-        puts "gameを終了します"
-        exit!
       end
+    rescue
+      puts "deckが残り#{@deck52.size}枚で枚数が足りません"
+      puts "deckを作り直します"
+      @deck52 = Deck.new.instance_variable_get('@deck52')
+      retry
     end
     p showdown
   end
@@ -88,6 +90,8 @@ class Dealer
   end
 
 end
+
+
 
 # deck.rb
 class Deck
@@ -122,6 +126,8 @@ class Deck
   end
 
 end
+
+
 
 # showdown.rb
 class Showdown
@@ -203,6 +209,8 @@ class Prayer
 
 end
 
+
+
 # card.rb
 class Card
   attr_reader :hand
@@ -279,57 +287,59 @@ class Card
 
 end
 
+
+
 # hand.rb
 class Hand
   attr_reader :hand
 
   def initialize(hand)
-    @has_suit = hand[0]
+    @suit = hand[0]
     same_rank_lists = hand[1]
-    @number_of_the_same_rank = same_rank_lists[0]
-    @has_continuation = hand[2]
+    @count_of_the_same_rank = same_rank_lists[0]
+    @serial_number = hand[2]
   end
 
   def judg_score_card
-    if @has_continuation
+    if @serial_number
       serial_card
-    elsif !@has_suit && @number_of_the_same_rank.size == 1
+    elsif !@suit && @count_of_the_same_rank.size == 1
       one_set_of_same_rank
-    elsif !@has_suit && @number_of_the_same_rank.size == 2
+    elsif !@suit && @count_of_the_same_rank.size == 2
       two_sets_of_same_rank
-    elsif @has_suit && @number_of_the_same_rank.size == 0 && !@has_continuation
+    elsif @suit && @count_of_the_same_rank.size == 0 && !@serial_number
       "flush"
-    elsif !@has_suit && @number_of_the_same_rank.size == 0 && !@has_continuation
+    elsif !@suit && @count_of_the_same_rank.size == 0 && !@serial_number
       "high card"
     end
   end
 
   def one_set_of_same_rank
-    if @number_of_the_same_rank[0] == 4
+    if @count_of_the_same_rank[0] == 4
       "four of a kind"
-    elsif @number_of_the_same_rank[0] == 3
+    elsif @count_of_the_same_rank[0] == 3
       "three of a kind"
-    elsif @number_of_the_same_rank[0] == 2
+    elsif @count_of_the_same_rank[0] == 2
       "one pair"
     end
   end
 
   def two_sets_of_same_rank
-    if @number_of_the_same_rank.inject{|sum, i| sum + i} == 4
+    if @count_of_the_same_rank.inject{|sum, i| sum + i} == 4
       "two pair"
-    elsif @number_of_the_same_rank.inject{|sum, i| sum + i} == 5
+    elsif @count_of_the_same_rank.inject{|sum, i| sum + i} == 5
       "full house"
     end
   end
 
   def serial_card
-    if @has_suit
-      if @has_continuation.inject{|sum, i| sum + i} == 60
+    if @suit
+      if @serial_number.inject{|sum, i| sum + i} == 60
         "royal flush"
       else
         "straight flush"
       end
-    elsif !@has_suit
+    elsif !@suit
       "straight"
     end
   end
